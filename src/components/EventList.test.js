@@ -5,17 +5,12 @@ it('should display 2 events', () => {
     const yesterday = new Date()
     yesterday.setDate(yesterday.getDate() - 1)
     const eventData = [
-        {title:'party1', date:new Date(), description:'desc1', complete:false},
-        {title:'party2', date:yesterday, description:'desc2', complete:true}
+        'event1',
+        'event2'
     ]
 
-    function mockEvent({title, description, date, complete}){
-        return <>
-            <div>{title}</div>
-            <div>{description}</div>
-            <div>{date.toDateString()}</div>
-            <div>{complete ? 'Complete': 'Upcoming'}</div>
-
+    function mockEvent({event}){
+        return <>{event}
         </>
 
     }

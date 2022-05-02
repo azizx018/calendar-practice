@@ -1,6 +1,7 @@
 
 
-export default function Event({title, date, description, complete}) {
+export default function Event({event}) {
+    const {title, date, description, complete} = event
     return <>
         <h2>{title}</h2>
         <h2>{date.toDateString()}</h2>
