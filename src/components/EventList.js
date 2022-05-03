@@ -1,8 +1,10 @@
 import Event from "./Event";
 
-export default function EventList({events, _Event=Event}){
+
+export default function EventList({appointments, _Event=Event}){
     return <>
-        {events.map((event, index) => <_Event key={index} event={event}/>)}
+        {appointments.map(
+            (appointment, index) => <_Event key={index} appointment={appointment}/>)}
     </>
 
 }

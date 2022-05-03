@@ -2,10 +2,26 @@ import { render, screen } from '@testing-library/react';
 import App from './App';
 import { debug } from 'jest-preview';
 
-it('should display main app when logged in and following text is displayed', () => {
-  render(<App loggedInInit={true}/>);
-  const h1 = screen.getByText(/Hey there/)
-  expect(h1).toBeInTheDocument();
+it('should display _EventList when logged in ', () => {
+  let _appointments = undefined
+  let _onDelete = undefined
+  const expectedText = 'This is your app'
+
+  const mock = ({appointments, onDelete}) => {
+    _appointments= appointments
+    _onDelete = onDelete
+    return<>{expectedText}</>
+  }
+  const noText = 'NONO'
+  const nono = () => <>{noText}</>
+
+  render(<App loggedInInit={true} _EventList={mock} _Login={nono}/>);
+
+  expect(screen.getByText(expectedText)).toBeInTheDocument()
+  expect(typeof _appointments).toBe('object')
+  expect(screen.queryByText(noText)).not.toBeInTheDocument()
+  // expect(_onDelete).toBeDefined()
+  expect(typeof _onDelete).toBe('function')
 });
 
 test('should display logout screen when logged out', () => {
