@@ -4,9 +4,10 @@ import Login from "./components/Login";
 import {useState} from "react";
 import EventList from "./components/EventList";
 import EditEvent from "./components/EditEvent";
+import CreateUser from "./components/CreateUser";
 
 
-function App({loggedInInit = false, _Login = Login, _EventList=EventList }) {
+function App({loggedInInit = false, _Login = Login, _EventList=EventList, _CreateUser = CreateUser }) {
     const [isLoggedIn, setIsLoggedIn] = useState(loggedInInit)
     const [appointmentToEdit, setAppointmentToEdit] = useState(undefined)
 
@@ -17,10 +18,24 @@ function App({loggedInInit = false, _Login = Login, _EventList=EventList }) {
       {id:2, title: 'Title3', date: new Date(), description: 'Desc3', complete:true}
     ])
 
+    const userList = [
+        {username:'mark', password:'poop'},
+        {username:'Shelly', password: 'flower'}
+    ]
+
     function handleLogin(credentials) {
-        if (credentials.username === 'bob' &&
-            credentials.password === 'pass')
-            setIsLoggedIn(true)
+        const matches = userList.filter(user =>
+            user.username === credentials.username &&
+            user.password === credentials.password)
+        const isMatched = matches.length > 0
+        setIsLoggedIn(isMatched);
+    }
+
+    function handleCreateUser(user) {
+        // TODO: Check if user already exists
+        // TODO: Check is username/password is not empty
+       userList.push(user)
+        console.log(userList)
     }
 
     function deleteAppointment(id) {
@@ -55,7 +70,11 @@ function App({loggedInInit = false, _Login = Login, _EventList=EventList }) {
             </div>
         }
    else
-        return <_Login onLogin={handleLogin}/>
+        return <div>
+            <_Login onLogin={handleLogin}/>
+            <_CreateUser onAddUser={handleCreateUser}/>
+        </div>
+
 }
 
 export default App;
