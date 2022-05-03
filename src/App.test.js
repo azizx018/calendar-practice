@@ -31,3 +31,14 @@ test('should display logout screen when logged out', () => {
   expect(element).toBeInTheDocument()
 
 });
+
+// it('should pass an onEdit function as a property of Memos', ()=> {
+//   let _onEdit = undefined
+//
+//   const Event = ({onEdit}) =>{
+//     _onEdit = onEdit
+//   }
+//   const state = {
+//     isloggedIn:true
+//   }
+// })
