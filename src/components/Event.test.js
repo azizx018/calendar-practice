@@ -32,3 +32,29 @@ it('should display title, date, description and upcomping',() => {
     deleteButton.click()
     expect(deleteMock).toHaveBeenCalledWith(id)
 })
+
+it('should show an edit button', ()=> {
+    const appointment = {
+        id:0,
+        title:'',
+        description:'',
+        date: new Date(),
+        complete: false
+    }
+    render(<Event appointment={appointment}/>)
+    expect(screen.getByRole('button',{name: 'Edit'} )).toBeInTheDocument()
+})
+
+it('should call onEdit when the edit button is clicked',()=>{
+    const appointment = {
+        id:0,
+        title:'',
+        description:'',
+        date: new Date(),
+        complete: false
+    }
+    const mock1=jest.fn()
+    render(<Event appointment={appointment} onEdit={mock1}/>)
+    screen.getByText('Edit').click()
+    expect(mock1).toHaveBeenCalledWith(appointment)
+})

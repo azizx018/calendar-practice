@@ -32,13 +32,13 @@ test('should display logout screen when logged out', () => {
 
 });
 
-// it('should pass an onEdit function as a property of Memos', ()=> {
-//   let _onEdit = undefined
-//
-//   const Event = ({onEdit}) =>{
-//     _onEdit = onEdit
-//   }
-//   const state = {
-//     isloggedIn:true
-//   }
-// })
+it('should pass an onEdit function as a property of EventList', ()=> {
+  let _onEdit = undefined
+
+  const EventList = ({onEdit}) => {
+    _onEdit = onEdit
+  }
+
+  render(<App loggedInInit={true} _EventList={EventList}/>)
+  expect(typeof _onEdit).toBe('function')
+})

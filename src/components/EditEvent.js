@@ -1,9 +1,8 @@
 import userEvent from "@testing-library/user-event";
 import {useState} from "react";
 
-export default function EditEvent({event,onCancel, onApply}){
-    const {title, date, description, complete} = event
-
+export default function EditEvent({appointment,onCancel, onApply}){
+    const {title, date, description, complete} = appointment
     const [newTitle, setNewTitle] = useState(title)
     const [newDescription, setNewDescription] = useState(description)
     const [newDate, setNewDate] = useState(date.toISOString().substr(0,10))
@@ -11,6 +10,7 @@ export default function EditEvent({event,onCancel, onApply}){
 
     function handleApply() {
         onApply({
+            id:appointment.id,
             title:newTitle,
             description: newDescription,
             date: new Date(newDate),

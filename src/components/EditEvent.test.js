@@ -13,7 +13,7 @@ it('should show input fields with current event data with event upcoming', ()=>{
         complete: false
     }
 
-    render(<EditEvent event={event}/>)
+    render(<EditEvent appointment={event}/>)
     const titleElement = screen.getByDisplayValue(event.title)
     expect(titleElement).toBeInTheDocument()
     const descriptionElement =screen.getByDisplayValue(event.description)
@@ -28,7 +28,7 @@ it('should show input fields with current event data listed as complete', ()=>{
         complete: true
     }
 
-    render(<EditEvent event={event}/>)
+    render(<EditEvent appointment={event}/>)
     const titleElement = screen.getByDisplayValue(event.title)
     expect(titleElement).toBeInTheDocument()
     const descriptionElement =screen.getByDisplayValue(event.description)
@@ -43,7 +43,7 @@ it('should show a cancel and an apply button', () =>{
         description: 'EventDesc',
         complete: true
     }
-    render(<EditEvent event={event}/>)
+    render(<EditEvent appointment={event}/>)
     expect(screen.getByText('Cancel')).toBeInTheDocument()
     expect(screen.getByText('Apply')).toBeInTheDocument()
 })
@@ -57,7 +57,7 @@ it('should call the onCancel  function when the cancel button is clicked', () =>
     }
     const mock = jest.fn()
     const mock2= jest.fn()
-    render(<EditEvent event={event} onCancel={mock} onApply={mock2}/>)
+    render(<EditEvent appointment={event} onCancel={mock} onApply={mock2}/>)
     const cancelButton = screen.getByText('Cancel')
     expect(cancelButton).toBeInTheDocument()
     cancelButton.click()
@@ -77,7 +77,7 @@ it('should call the onApply fn with the new values when the apply button is clic
     }
     const mock = jest.fn()
 
-    render(<EditEvent event={event} onApply={mock}/>)
+    render(<EditEvent appointment={event} onApply={mock}/>)
 
     const yesterday = new Date()
     yesterday.setDate(yesterday.getDate() - 1)

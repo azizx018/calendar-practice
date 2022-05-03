@@ -1,10 +1,10 @@
 import Event from "./Event";
 
 
-export default function EventList({appointments, _Event=Event, onDelete}){
+export default function EventList({appointments, _Event=Event, onEdit, onDelete}){
     return <>
         {appointments.map(
-            (appointment, index) => <_Event key={index} appointment={appointment} onDelete={onDelete}/>)}
+            (appointment, index) => <_Event key={index} appointment={appointment} onDelete={onDelete} onEdit={onEdit}/>)}
     </>
 
 }

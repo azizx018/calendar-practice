@@ -18,3 +18,16 @@ it('should display 2 events and pass onDelete to each mock', () => {
     expect(typeof _onDelete).toBe('function')
 
 })
+
+it('should accept an onEdit property', () => {
+    const onEdit = '' // this is a string beacuse we just want it to pass it through
+    const appointments = ['appointment']
+    const Event = jest.fn()
+    render(<EventList appointments={appointments} onEdit={onEdit} _Event={Event}/>)
+    expect(Event).toHaveBeenLastCalledWith({
+        onEdit,
+        appointment:appointments[0],
+        onDelete:undefined
+
+    }, {})
+})
